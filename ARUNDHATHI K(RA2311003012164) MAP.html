@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Indian Art & Heritage Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <style>
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+    .info {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .info img {
+      max-width: 200px;
+      display: block;
+      margin-top: 5px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Create map
+    var map = L.map('map').setView([22.9734, 78.6569], 5); // Center on India
+
+    // Add tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Locations with art history info
+    var places = [
+      {
+        name: "Ajanta Caves (Maharashtra)",
+        coords: [20.5519, 75.7033],
+        info: "Famous for Buddhist cave paintings and murals (2nd century BCE – 480 CE). <br><img src='https://upload.wikimedia.org/wikipedia/commons/7/7f/Ajanta_Cave_1.jpg'>"
+      },
+      {
+        name: "Ellora Caves (Maharashtra)",
+        coords: [20.0268, 75.1791],
+        info: "Rock-cut temples dedicated to Hindu, Buddhist, and Jain traditions (600–1000 CE). <br><img src='https://upload.wikimedia.org/wikipedia/commons/4/4e/Kailash_Temple_at_Ellora.jpg'>"
+      },
+      {
+        name: "Elephanta Caves (Maharashtra)",
+        coords: [18.9633, 72.9314],
+        info: "Island caves with Hindu rock-cut temples, famous for the Trimurti sculpture (5th–8th century CE). <br><img src='https://upload.wikimedia.org/wikipedia/commons/7/7f/Elephanta_Caves_Trimurti.jpg'>"
+      },
+      {
+        name: "Sanchi Stupa (Madhya Pradesh)",
+        coords: [23.4790, 77.7390],
+        info: "Great Stupa built by Emperor Ashoka (3rd century BCE), symbol of Buddhist art. <br><img src='https://upload.wikimedia.org/wikipedia/commons/b/b3/Sanchi_Stupa_No._1.jpg'>"
+      },
+      {
+        name: "Khajuraho Temples (Madhya Pradesh)",
+        coords: [24.8318, 79.9199],
+        info: "Nagara-style temples with intricate sculptures (950–1050 CE). <br><img src='https://upload.wikimedia.org/wikipedia/commons/d/da/Khajuraho_Temple.jpg'>"
+      },
+      {
+        name: "Konark Sun Temple (Odisha)",
+        coords: [19.8876, 86.0945],
+        info: "13th-century Sun Temple, UNESCO World Heritage Site. <br><img src='https://upload.wikimedia.org/wikipedia/commons/4/40/Konark_Sun_Temple_Wheel.jpg'>"
+      },
+      {
+        name: "Nalanda University (Bihar)",
+        coords: [25.1357, 85.4433],
+        info: "Ancient Buddhist university and learning center (5th–12th century CE). <br><img src='https://upload.wikimedia.org/wikipedia/commons/6/62/Nalanda_University_Ruins.jpg'>"
+      },
+      {
+        name: "Hampi (Karnataka)",
+        coords: [15.3350, 76.4600],
+        info: "Capital of Vijayanagara Empire, full of temples and monuments (14th–16th century CE). <br><img src='https://upload.wikimedia.org/wikipedia/commons/9/9e/Stone_Chariot%2C_Hampi.jpg'>"
+      },
+      {
+        name: "Thanjavur (Tamil Nadu)",
+        coords: [10.7870, 79.1378],
+        info: "Famous for Brihadeeswarar Temple and Tanjore paintings (Chola dynasty). <br><img src='https://upload.wikimedia.org/wikipedia/commons/3/3a/Thanjavur_Brihadeeswara_Temple.jpg'>"
+      },
+      {
+        name: "Mamallapuram (Tamil Nadu)",
+        coords: [12.6208, 80.1946],
+        info: "Pallava rock-cut temples and sculptures like Arjuna’s Penance (7th–8th century CE). <br><img src='https://upload.wikimedia.org/wikipedia/commons/e/ee/Arjuna%27s_Penance%2C_Mamallapuram.jpg'>"
+      },
+      {
+        name: "Amritsar (Punjab)",
+        coords: [31.6340, 74.8723],
+        info: "Golden Temple – a masterpiece of Sikh art and architecture (16th century CE). <br><img src='https://upload.wikimedia.org/wikipedia/commons/0/09/Golden_Temple_Amritsar.jpg'>"
+      },
+      {
+        name: "Agra (Uttar Pradesh)",
+        coords: [27.1751, 78.0421],
+        info: "Home to the Taj Mahal, Mughal architecture at its peak (17th century CE). <br><img src='https://upload.wikimedia.org/wikipedia/commons/d/da/Taj-Mahal.jpg'>"
+      },
+      {
+        name: "Delhi (Qutub Minar)",
+        coords: [28.5244, 77.1855],
+        info: "Qutub Minar and surrounding monuments – Indo-Islamic architecture (12th century CE). <br><img src='https://upload.wikimedia.org/wikipedia/commons/4/44/Qutub_Minar_in_New_Delhi_03-2016_img3.jpg'>"
+      }
+    ];
+
+    // Add markers
+    places.forEach(function(place) {
+      L.marker(place.coords).addTo(map)
+        .bindPopup("<div class='info'><b>" + place.name + "</b><br>" + place.info + "</div>");
+    });
+  </script>
+</body>
+</html>
